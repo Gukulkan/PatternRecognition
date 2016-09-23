@@ -1,4 +1,3 @@
-package com.PatternRecognition;
 /******************************************************************************
  *  Compilation:  javac Point.java
  *  Execution:    java Point
@@ -61,16 +60,16 @@ public class Point implements Comparable<Point> {
      */
     public double slopeTo(Point that) {
         /* YOUR CODE HERE */
-        if(this.y - that.y == 0){
-            if(this.x - that.x == 0)
+        if (this.y - that.y == 0) {
+            if (this.x - that.x == 0)
                 return Double.NEGATIVE_INFINITY;
             return +0;
         }
-        if(this.x - that.x == 0){
+        if (this.x - that.x == 0) {
             return Double.POSITIVE_INFINITY;
         }
 
-        return (that.y - this.y)/ (that.x - this.x);
+        return (that.y - this.y)/ (double) (that.x - this.x);
     }
 
     /**
@@ -88,7 +87,7 @@ public class Point implements Comparable<Point> {
     public int compareTo(Point that) {
         /* YOUR CODE HERE */
         int difference = this.y - that.y;
-        if(difference == 0){
+        if (difference == 0) {
             return this.x - that.y;
         }
         return difference;
@@ -105,8 +104,14 @@ public class Point implements Comparable<Point> {
         return new Comparator<Point>() {
             @Override
             public int compare(Point point1, Point point2) {
-                Double diff = slopeTo(point1) - slopeTo(point2);
-                return diff.intValue();
+                double slopeDiff = slopeTo(point1) - slopeTo(point2);
+                if (slopeDiff > 0) {
+                    return 1;
+                } else if (slopeDiff < 0) {
+                    return -1;
+                } else {
+                    return 0;
+                }
             }
         };
     }

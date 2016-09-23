@@ -1,4 +1,3 @@
-package com.PatternRecognition;
 /*************************************************************************
  *  Compilation:  javac LineSegment.java
  *  Execution:    none
